@@ -24,3 +24,8 @@ export default DropTarget<IDeleteDropZoneOwnProps>(
     collect,
 )(DeleteDropZone);
 ```
+
+###### Chart component
+![image](https://user-images.githubusercontent.com/61957094/122647896-ba698b00-d150-11eb-83c6-95129dc234c7.png)
+
+Cái chart component là component DrillModalVisualization
