@@ -29,3 +29,28 @@ export default DropTarget<IDeleteDropZoneOwnProps>(
 ![image](https://user-images.githubusercontent.com/61957094/122647896-ba698b00-d150-11eb-83c6-95129dc234c7.png)
 
 Cái chart component là component DrillModalVisualization
+
+##### Chế độ edit mode
+![image](https://user-images.githubusercontent.com/61957094/122661742-d2c0c080-d1b7-11eb-862f-6b73a86f83d4.png)
+
+component `DashboardEditHeader` khi click vào function `onEditClick` sẽ chuyển thành chế độ edit mode. Và sẽ có biến cờ để biết là liệu có thay đổi cái chart không? Cái đó để khi mà user reload thì sẽ hiện popup confirm.
+Đây là function gắn cờ xem có thay đổi hay không
+
+```
+export const editModeRequested = (postMessageContext?: IPostMessageContextContent) => (
+    dispatch: Dispatch,
+    getState: GetState,
+) => {
+    const appState = getState();
+    const areAttributeFiltersMod = isAttributeFiltersModified(appState);
+    const isDateFilterChanged = isSelectedDateFilterDifferentFromStored(appState);
+
+    const action: IEditModeRequestedAction = buildMessage(ActionTypeKeys.EDIT_MODE_REQUESTED, {
+        isDateFilterChanged,
+        areAttributeFiltersMod,
+        postMessageContext,
+    });
+
+    dispatch(action);
+};
+```
